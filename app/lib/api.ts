@@ -10,9 +10,10 @@ import type {
   Topic,
 } from "./types";
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL ??
-  "https://admin-moderator-backend-staging.up.railway.app/api";
+// Default to the same-origin proxy (see rewrites in next.config.ts) so browser
+// requests never go cross-origin and avoid CORS. Override only with a relative
+// path; an absolute cross-origin URL will reintroduce the CORS failure.
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/proxy-api";
 
 const TOKEN_KEY = "preproute.auth.token";
 const USER_KEY = "preproute.auth.user";
